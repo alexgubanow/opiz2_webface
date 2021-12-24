@@ -8,17 +8,18 @@ using Microsoft.Extensions.Logging;
 
 namespace main_app.Pages
 {
-    public class PrivacyModel : PageModel
+    public class TheCodeModel : PageModel
     {
-        private readonly ILogger<PrivacyModel> _logger;
+        private readonly ILogger<IndexModel> _logger;
 
-        public PrivacyModel(ILogger<PrivacyModel> logger)
+        public TheCodeModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }
 
         public void OnGet()
         {
+
         }
     }
 }
