@@ -8,10 +8,9 @@ using Microsoft.Extensions.Logging;
 
 namespace main_app.Pages
 {
-    public class TheCodeModel : PageModel
+    public class TheCodeModel : ModelExpand
     {
         private readonly ILogger<IndexModel> _logger;
-        public string Message { get; set; }
 
         public TheCodeModel(ILogger<IndexModel> logger)
         {

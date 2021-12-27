@@ -21,13 +21,12 @@ namespace main_app.Pages
         [Display(Name = "Password")]
         public string Password { get; set; }
     }
-    public class SettingsModel : PageModel
+    public class SettingsModel : ModelExpand
     {
         private readonly ILogger<IndexModel> _logger;
         public List<string> SSIDList { get; set; }
         [BindProperty]
         public WiFiCreds WiFiCreds { get; set; }
-        public string Message { get; set; }
         public SettingsModel(ILogger<IndexModel> logger)
         {
             _logger = logger;

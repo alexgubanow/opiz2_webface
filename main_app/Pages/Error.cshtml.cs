@@ -10,14 +10,13 @@ using Microsoft.Extensions.Logging;
 namespace main_app.Pages
 {
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public class ErrorModel : PageModel
+    public class ErrorModel : ModelExpand
     {
         public string RequestId { get; set; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
         private readonly ILogger<ErrorModel> _logger;
-        public string Message { get; set; }
 
         public ErrorModel(ILogger<ErrorModel> logger)
         {
