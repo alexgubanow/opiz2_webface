@@ -17,6 +17,7 @@ namespace main_app.Pages
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
         private readonly ILogger<ErrorModel> _logger;
+        public string Message { get; set; }
 
         public ErrorModel(ILogger<ErrorModel> logger)
         {

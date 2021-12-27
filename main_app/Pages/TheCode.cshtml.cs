@@ -11,6 +11,7 @@ namespace main_app.Pages
     public class TheCodeModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        public string Message { get; set; }
 
         public TheCodeModel(ILogger<IndexModel> logger)
         {
