@@ -1,43 +1,66 @@
 ﻿@page
 @model SettingsModel
 @{
-    ViewData["Title"] = "Network Connection";
+    ViewData["Title"] = "Settings";
 }
-<div class="text-center">
-    <h1 class="display-4">Setup network connection</h1>
-    <p>Please setup wifi connection or plug-in ethernet cable and setup IP</p>
-</div>
-<form class="text-left col-md-4" asp-page-handler="WiFIConnect" method="post">
-    <fieldset>
-        <legend>Enter your WiFi connection details</legend>
-        <div class="form-group">
-            <label asp-for="WiFiCreds.SSID" class="form-label">SSID</label>
-            <span asp-validation-for="WiFiCreds.SSID" class="text-danger"></span>
-            <div class="input-group">
-                <input asp-for="WiFiCreds.SSID" type="text" class="form-control" placeholder="Enter your SSID">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Choose SSID
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        @foreach (var item in Model.SSIDList)
-                        {
-                            <li><a href="#" class="dropdown-item">@item</a></li>
-                        }
-                    </ul>
-                </div>
+<h3 class="text-left">Settings, twist it around</h3>
+<div class="accordion" id="settingsAccordion">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Wifi connection
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#settingsAccordion">
+            <div class="accordion-body">
+
+                <form class="text-left col-md-4" asp-page-handler="WiFIConnect" method="post">
+                    <fieldset>
+                        <legend>Enter your WiFi connection details</legend>
+                        <div class="form-group">
+                            <label asp-for="WiFiCreds.SSID" class="form-label">SSID</label>
+                            <span asp-validation-for="WiFiCreds.SSID" class="text-danger"></span>
+                            <div class="input-group">
+                                <input asp-for="WiFiCreds.SSID" type="text" class="form-control" placeholder="Enter your SSID">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Choose SSID
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var item in Model.SSIDList)
+                                        {
+                                            <li><a href="#" class="dropdown-item">@item</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <small id="ssidHelp" class="form-text text-muted">It should be same network with your ssh device</small>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="WiFiCreds.Password" class="form-label">Password</label>
+                            <input asp-for="WiFiCreds.Password" type="password" class="form-control" placeholder="Enter your password">
+                        </div>
+                    </fieldset>
+                    <br />
+                    <button type="submit" class="btn btn-light">Connect</button>
+                </form>
             </div>
-            <small id="ssidHelp" class="form-text text-muted">It should be same network with your ssh device</small>
         </div>
-        <div class="form-group">
-            <label asp-for="WiFiCreds.Password" class="form-label">Password</label>
-            <input asp-for="WiFiCreds.Password" type="password" class="form-control" placeholder="Enter your password">
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                Something else
+            </button>
+        </h2>
+        <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#settingsAccordion">
+            <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
         </div>
-    </fieldset>
-    <br />
-    <button type="submit" class="btn btn-light">Connect</button>
-</form>
+    </div>
+</div>
 @section scripts{
     <script>
         $(".dropdown-menu li a").click(function () {
