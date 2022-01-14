@@ -1,5 +1,6 @@
 ﻿@page
 @model SettingsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Settings";
 }
@@ -13,14 +14,14 @@
         </h2>
         <div id="collapse1" class="collapse" aria-labelledby="heading1" data-parent="#settingsAccordion">
             <div class="accordion-body">
-                <form class="text-left col-md-4" asp-page-handler="WiFIConnect" method="post">
+                <form class="text-left col-md-4" method="post">
                     <fieldset>
                         <legend>Enter your WiFi connection details</legend>
                         <div class="form-group">
-                            <label asp-for="WiFiCreds.SSID" class="form-label">SSID</label>
-                            <span asp-validation-for="WiFiCreds.SSID" class="text-danger"></span>
+                            <label asp-for="WifiCreds.SSID" class="form-label">SSID</label>
+                            @*<span asp-validation-for="WifiCreds.SSID" class="text-danger"></span>*@
                             <div class="input-group">
-                                <input asp-for="WiFiCreds.SSID" type="text" class="form-control" placeholder="Enter your SSID">
+                                <input asp-for="WifiCreds.SSID" type="text" class="form-control" placeholder="Enter your SSID">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Choose SSID
@@ -37,12 +38,12 @@
                             <small id="ssidHelp" class="form-text text-muted">It should be same network with your ssh device</small>
                         </div>
                         <div class="form-group">
-                            <label asp-for="WiFiCreds.Password" class="form-label">Password</label>
-                            <input asp-for="WiFiCreds.Password" type="password" class="form-control" placeholder="Enter your password">
+                            <label asp-for="WifiCreds.Password" class="form-label">Password</label>
+                            <input asp-for="WifiCreds.Password" type="password" class="form-control" placeholder="Enter your password">
                         </div>
                     </fieldset>
                     <br />
-                    <button type="submit" class="btn btn-light">Connect</button>
+                    <button type="submit" class="btn btn-light" asp-page-handler="WiFIConnect">Connect</button>
                 </form>
             </div>
         </div>
@@ -50,12 +51,41 @@
     <div class="accordion-item">
         <h2 class="accordion-header" id="headingThree">
             <button class="accordion-button collapsed" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                Something else
+                User management
             </button>
         </h2>
         <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-parent="#settingsAccordion">
             <div class="accordion-body">
-                <strong>This is item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <form class="text-left col-md-4" method="post">
+                    <fieldset>
+                        <legend>Set new root password</legend>
+                        <div class="form-group">
+                            <label asp-for="UserCreds.Password" class="form-label">Password</label>
+                            <input asp-for="UserCreds.Password" type="password" class="form-control" placeholder="Enter new password">
+                            @*<span asp-validation-for="UserCreds.Password" class="text-danger"></span>*@
+                        </div>
+                    </fieldset>
+                    <br />
+                    <button type="submit" class="btn btn-light" asp-page-handler="UserManagementSetRootPSWD">Set</button>
+                </form>
+                    <br />
+                <form class="text-left col-md-4" method="post">
+                    <fieldset>
+                        <legend>Add new user</legend>
+                        <div class="form-group">
+                            <label asp-for="UserCreds.User" class="form-label">User</label>
+                            <input asp-for="UserCreds.User" class="form-control" placeholder="Enter user name">
+                            @*<span asp-validation-for="UserCreds.User" class="text-danger"></span>*@
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="UserCreds.Password" class="form-label">Password</label>
+                            <input asp-for="UserCreds.Password" type="password" class="form-control" placeholder="Enter new password">
+                            @*<span asp-validation-for="UserCreds.Password" class="text-danger"></span>*@
+                        </div>
+                    </fieldset>
+                    <br />
+                    <button type="submit" class="btn btn-light" asp-page-handler="UserManagementCreateUser">Create</button>
+                </form>
             </div>
         </div>
     </div>
